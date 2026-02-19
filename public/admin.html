@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Poll - Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="admin-page">
+
+  <!-- Header -->
+  <header class="admin-header">
+    <h1>Live Poll Admin</h1>
+    <p class="share-link">Share this link with your audience: <a href="/" target="_blank">/</a></p>
+  </header>
+
+  <!-- Create Question Form -->
+  <section class="create-question">
+    <h2>Create Question</h2>
+    <form id="create-question-form">
+      <div class="form-group">
+        <label for="question-title">Question Title</label>
+        <input type="text" id="question-title" placeholder="Enter your question..." required>
+      </div>
+      <div class="form-group">
+        <label for="question-type">Type</label>
+        <select id="question-type">
+          <option value="single">Single Choice</option>
+          <option value="multiple">Multiple Choice</option>
+          <option value="freetext">Free Text</option>
+        </select>
+      </div>
+      <div class="form-group" id="options-section">
+        <label>Options</label>
+        <div id="options-list">
+          <div class="option-row">
+            <input type="text" class="option-input" placeholder="Option 1">
+            <button type="button" class="btn-remove-option" onclick="removeOption(this)">&times;</button>
+          </div>
+          <div class="option-row">
+            <input type="text" class="option-input" placeholder="Option 2">
+            <button type="button" class="btn-remove-option" onclick="removeOption(this)">&times;</button>
+          </div>
+        </div>
+        <button type="button" id="add-option-btn" class="btn btn-secondary">Add Option</button>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Question</button>
+    </form>
+  </section>
+
+  <!-- Question List -->
+  <section class="question-list">
+    <h2>Questions</h2>
+    <div id="questions-container">
+      <p class="empty-state">No questions yet. Create one above!</p>
+    </div>
+  </section>
+
+  <!-- Live Results Panel -->
+  <section class="results-panel" id="results-panel" style="display:none;">
+    <h2>Live Results</h2>
+    <div id="results-question-title"></div>
+    <div id="results-total">Total responses: 0</div>
+    <div id="results-content"></div>
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Poll</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="user-page">
+  <div class="container">
+    <h1>Live Poll</h1>
+    
+    <!-- Waiting state -->
+    <div id="waiting" class="waiting-screen">
+      <div class="pulse-dot"></div>
+      <p>Waiting for the next question...</p>
+    </div>
+    
+    <!-- Question state -->
+    <div id="question-area" class="question-area" style="display:none">
+      <h2 id="question-title"></h2>
+      <div id="answer-form"></div>
+      <button id="submit-btn" class="btn btn-primary">Submit</button>
+    </div>
+    
+    <!-- Submitted state -->
+    <div id="submitted" class="submitted-screen" style="display:none">
+      <div class="checkmark">✓</div>
+      <p>Answer submitted!</p>
+      <p class="subtitle">Waiting for next question...</p>
+    </div>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/user.js"></script>
+</body>
+</html>
