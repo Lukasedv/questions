@@ -472,3 +472,59 @@ label {
   .question-area h2 { font-size: 1.75rem; }
   .option-label { font-size: 1.15rem; min-height: 60px; }
 }
+
+/* ── Results Viewer Page ──────────────────────────────── */
+.results-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.results-viewer {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.results-viewer h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.results-viewer .total-responses {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+.results-viewer .bar-chart {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.results-viewer .bar-row {
+  margin-bottom: 1.25rem;
+}
+
+.results-viewer .bar-label {
+  font-size: 1.3rem;
+}
+
+.results-viewer .bar-value {
+  font-size: 1.2rem;
+}
+
+.results-viewer .word-cloud {
+  padding: 2rem;
+}
+
+.results-viewer .waiting-screen {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

@@ -26,6 +26,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'user.html'));
 });
 
+app.get('/results', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'results.html'));
+});
+
 app.get('/admin/:key', (req, res) => {
   if (req.params.key !== ADMIN_KEY) {
     return res.status(403).send('Invalid admin key');
@@ -49,6 +53,19 @@ io.on('connection', (socket) => {
   // Join admin room if authenticated as admin
   if (socket.handshake.auth && socket.handshake.auth.role === 'admin') {
     socket.join('admin');
+  }
+
+  // Join viewer room for results-only display
+  if (socket.handshake.auth && socket.handshake.auth.role === 'viewer') {
+    socket.join('viewer');
+    // Send current active question state
+    if (store.activeQuestionId) {
+      const q = store.questions.find(q => q.id === store.activeQuestionId);
+      if (q) {
+        socket.emit('question-activated', { question: q });
+        socket.emit('results-updated', buildResults(q));
+      }
+    }
   }
 
   // Admin events
@@ -92,6 +109,7 @@ io.on('connection', (socket) => {
       question.answers = {};
       question.totalResponses = 0;
       io.to('admin').emit('results-updated', buildResults(question));
+      io.to('viewer').emit('results-updated', buildResults(question));
     }
   });
 
@@ -122,6 +140,7 @@ io.on('connection', (socket) => {
     }
 
     io.to('admin').emit('results-updated', buildResults(question));
+    io.to('viewer').emit('results-updated', buildResults(question));
   });
 });
 

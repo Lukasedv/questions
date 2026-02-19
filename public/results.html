@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Poll - Results</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="results-page">
+  <div class="results-viewer">
+
+    <!-- Waiting state -->
+    <div id="waiting" class="waiting-screen">
+      <div class="pulse-dot"></div>
+      <p>Waiting for a question...</p>
+    </div>
+
+    <!-- Results display -->
+    <div id="results-area" style="display:none">
+      <h1 id="question-title"></h1>
+      <div id="total-responses" class="total-responses">0 responses</div>
+      <div id="results-content"></div>
+    </div>
+
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/results.js"></script>
+</body>
+</html>
